@@ -23,9 +23,8 @@ def readPressure():
 
 while True:
     print("Temp: " + str(readTemperature()))
-    print("Pressure: " + str(readPressure()) + "hpa")
-    send_data(readTemperature())
-    send_data(readPressure())
+    print("Pressure: " + str(readPressure()) + "kpa")
+    send_data(str(readTemperature()) + "," + str(readPressure() / 10))
     time.sleep(1)
     
 

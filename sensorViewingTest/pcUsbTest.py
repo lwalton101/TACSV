@@ -1,12 +1,26 @@
-import serial
-import time
+import serial, time, json
 
 device_COM = 'COM5'
+tempList = []
+pressureList = []
+dataFile = open("data.json", "w")
+jasonElement = {}
 
 device = serial.Serial(device_COM, baudrate=115200, bytesize=8, parity='N', stopbits=1, timeout=1, xonxoff=0, rtscts=0)
-while True:
+for x in range(0,50):
     response = str(device.read_all(), 'utf-8')
     if response != "":
-        print(response)
+        responseSplit = response.split(",")
+        temp = responseSplit[0]
+        pressure = responseSplit[1]
+        pressure = pressure.replace("\n","")
+        print(response) 
+        tempList.append(float(temp))
+        pressureList.append(float(pressure))
+    time.sleep(1)
+jasonElement["temps"] = tempList
+jasonElement["pressure"] = pressureList
+json.dump(jasonElement, dataFile)
+
 
     

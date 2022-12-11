@@ -17,7 +17,7 @@ figure = None
 yLimEntry = None
 xLim = (0, 100)
 yLim = (0, 100)
-dataFile = json.load(open("fakeData.json", "r"))
+dataFile = json.load(open("Data.json", "r"))
 temps = dataFile["temps"]
 pressures = dataFile["pressure"]
 temp = IntVar()
@@ -25,7 +25,7 @@ pressure = IntVar()
 goblinMode = IntVar()
 time = []
 for x in range(len(temps)):
-    time.append(0.5 * x)
+    time.append(1 * x)
 
 def quit_me():
     window.quit()
