@@ -15,18 +15,18 @@ usb_cdc.data.timeout = 5
 i2c = busio.I2C(scl = board.GP15, sda = board.GP14)
 bmp280_sensor = adafruit_bmp280.Adafruit_BMP280_I2C(i2c, address=0x76)
 
-def read_temperature():
+def readTemperature():
     return bmp280_sensor.temperature
 
-def read_pressure():
+def readPressure():
     return bmp280_sensor.pressure
 
 while True:
-    print("Temp: " + str(read_temperature()))
-    print("Pressure: " + str(read_pressure()) + "hpa")
-    send_data(read_temperature)
-    send_data(read_pressure)
-    time.sleep(2)
+    print("Temp: " + str(readTemperature()))
+    print("Pressure: " + str(readPressure()) + "hpa")
+    send_data(readTemperature())
+    send_data(readPressure())
+    time.sleep(1)
     
 
         
