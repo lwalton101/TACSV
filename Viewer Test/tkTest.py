@@ -43,7 +43,7 @@ def refreshGraph():
     
     if goblinMode.get() == 1:
         img = mpimg.imread('amin nostril.png')
-        ax.imshow(img)
+        ax.imshow(img, cmap="hot")
     
     if temp.get() == 1:
         ax.plot(time, temps, "b", label="Temperature (℃)")
