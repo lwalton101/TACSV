@@ -1,4 +1,4 @@
-import tkinter as tk, serial, ctypes, matplotlib.pyplot as plt, matplotlib.image as mpimg
+import tkinter as tk, serial, ctypes, matplotlib.pyplot as plt, matplotlib.image as mpimg, json, datetime
 from tkinter import *
 from tkinter import ttk 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -42,10 +42,23 @@ def getData():
 dataCollectionThread = RepeatingTimer(getData, 1)
 dataCollectionThread.start()
 
+def saveData():
+    time = datetime.datetime.now()
+    f = open(f"../Data/{time.hour}.{time.minute}.{time.second}.json", "w")
+
+    jsonElement = {}
+    jsonElement["temps"] = temps
+    jsonElement["pressures"] = pressures
+    
+    json.dump(jsonElement, f)
+
+
+
 def quit_me():
     window.quit()
     window.destroy()
     dataCollectionThread.stop()
+    saveData()
 
 def refreshGraph():
     global graph
@@ -92,7 +105,6 @@ my_notebook.add(graphTab, text="Graphs")
 
 Label(homeTab, text= "Home", font= ('Helvetica 20 bold')).pack()
 Label(graphTab, text= "Graphs", font=('Helvetica 20 bold')).pack()
-Label(homeTab, text="HAHAHAH FUNNY NUMBER").pack()
 
 Checkbutton(graphTab, text="Temperature", variable=temp, onvalue=1, offvalue=0).pack(side=tk.BOTTOM)
 Checkbutton(graphTab, text="Pressure", variable=pressure, onvalue=1, offvalue=0).pack(side=tk.BOTTOM)
@@ -101,6 +113,7 @@ Checkbutton(graphTab, text="Goblin Mode", variable=goblinMode, onvalue=1, offval
 yLimEntry=Entry(graphTab, width=35)
 yLimEntry.insert(0, "0,100")
 yLimEntry.pack(side=tk.BOTTOM)
+Button(graphTab, text="Save", command=saveData).pack(side=tk.BOTTOM)
 Button(graphTab, text="Refresh", command=refreshGraph).pack(side=tk.BOTTOM)
 
 refreshGraph()
