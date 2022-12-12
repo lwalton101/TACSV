@@ -4,10 +4,12 @@ from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from RepeatingTimer import RepeatingTimer
 
+# creates connection with USB device(pico)
 device_COM = 'COM3'
 device = serial.Serial(device_COM, baudrate=115200, bytesize=8, parity='N', stopbits=1, timeout=1, xonxoff=0, rtscts=0)
 
-myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
+# Allows the icon to be on the taskbar
+myappid = 'T.A.C.V' # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 window = tk.Tk()
@@ -79,16 +81,18 @@ window.wm_iconbitmap("amin davies 7E.ico")
 window.wm_title("Team Artemis CatSat Viewer")
 window.protocol("WM_DELETE_WINDOW", quit_me)
 
+#Initalises used widgets
 my_notebook= ttk.Notebook(window)
 my_notebook.pack(expand=1,fill=BOTH)
 
 homeTab= ttk.Frame(my_notebook)
-my_notebook.add(homeTab, text= "Home")
+my_notebook.add(homeTab, text="Home")
 graphTab = ttk.Frame(my_notebook)
-my_notebook.add(graphTab, text= "Graphs")
+my_notebook.add(graphTab, text="Graphs")
 
 Label(homeTab, text= "Home", font= ('Helvetica 20 bold')).pack()
 Label(graphTab, text= "Graphs", font=('Helvetica 20 bold')).pack()
+Label(homeTab, text="HAHAHAH FUNNY NUMBER").pack()
 
 Checkbutton(graphTab, text="Temperature", variable=temp, onvalue=1, offvalue=0).pack(side=tk.BOTTOM)
 Checkbutton(graphTab, text="Pressure", variable=pressure, onvalue=1, offvalue=0).pack(side=tk.BOTTOM)
