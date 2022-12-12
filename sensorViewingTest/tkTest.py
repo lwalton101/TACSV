@@ -44,7 +44,7 @@ dataCollectionThread.start()
 
 def saveData():
     time = datetime.datetime.now()
-    f = open(f"../Data/{time.hour}.{time.minute}.{time.second}.json", "w")
+    f = open(f"../Data/{time.day}-{time.month}-{time.year} {time.hour}.{time.minute}.{time.second}.json", "w")
 
     jsonElement = {}
     jsonElement["temps"] = temps
@@ -117,5 +117,4 @@ Button(graphTab, text="Save", command=saveData).pack(side=tk.BOTTOM)
 Button(graphTab, text="Refresh", command=refreshGraph).pack(side=tk.BOTTOM)
 
 refreshGraph()
-
 window.mainloop()
