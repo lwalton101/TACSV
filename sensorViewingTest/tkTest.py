@@ -6,7 +6,11 @@ import matplotlib.image as mpimg
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import json
 import ctypes
+import serial
+from RepeatingTimer import RepeatingTimer
 
+device_COM = 'COM3'
+device = serial.Serial(device_COM, baudrate=115200, bytesize=8, parity='N', stopbits=1, timeout=1, xonxoff=0, rtscts=0)
 
 myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
@@ -18,18 +22,31 @@ yLimEntry = None
 xLim = (0, 100)
 yLim = (0, 100)
 dataFile = json.load(open("Data.json", "r"))
-temps = dataFile["temps"]
-pressures = dataFile["pressure"]
+temps = []
+pressures = []
 temp = IntVar()
 pressure = IntVar()
 goblinMode = IntVar()
 time = []
-for x in range(len(temps)):
-    time.append(1 * x)
+
+def getData():
+    response = str(device.read_all(), 'utf-8')
+    if response != "":
+        responseSplit = response.split(",")
+        temp = responseSplit[0]
+        pressure = responseSplit[1].replace("\n","")
+
+        temps.append(float(temp))
+        pressures.append(float(pressure))
+        time.append(len(time))
+
+dataCollectionThread = RepeatingTimer(getData, 1)
+dataCollectionThread.start()
 
 def quit_me():
     window.quit()
     window.destroy()
+    dataCollectionThread.stop()
 
 def refreshGraph():
     global graph
@@ -58,6 +75,7 @@ def refreshGraph():
     split = yLimEntry.get().split(",")
     ax.set_ylim(float(split[0]), float(split[1]))
     ax.set_xlabel('Time')
+
 
 
 window.geometry("1000x800")
