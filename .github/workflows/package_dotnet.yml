@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         dotnet-version: [ '7.0.x' ]
@@ -17,8 +17,8 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
+      - name: Publish
+        run: dotnet publish -c Release --output ./Release
       - name: Test
         run: dotnet test --no-restore --verbosity normal
       - name: View Files
