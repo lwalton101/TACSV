@@ -23,8 +23,10 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
       - name: View Files
         run: tree
+      - name: dir
+        run: pwd
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with: 
           name: TACSV_Artifact
-          path: "D:\\TACSV\\bin\\Release\\net7.0-windows\\"
+          path: "\\TACSV\\bin\\Release\\net7.0-windows\\"
