@@ -35,6 +35,6 @@ jobs:
           repo_token: ${{ secrets.TOKEN_GITHUB }}
           file: ./TACSV.zip
           asset_name: mything
-          tag: ${{ github.ref }}
+          tag: test
           overwrite: true
           body: "This is my release text"
