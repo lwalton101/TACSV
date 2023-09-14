@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
       - name: Publish
-        run: dotnet publish -c Release --output ./Release
+        run: dotnet build -c Release --output ./Release --configuration Release --runtime win-x64
       - name: Test
         run: dotnet test --no-restore --verbosity normal
       - name: View Files
