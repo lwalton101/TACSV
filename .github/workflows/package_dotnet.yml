@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         dotnet-version: [ '7.0.x' ]
@@ -24,7 +24,7 @@ jobs:
       - name: View Files
         run: tree
       - name: dir
-        run: pwd
+        run: echo %cd%
       - name: Compress
         uses: TonyBogdanov/zip@1.0
         with:
