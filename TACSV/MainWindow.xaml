@@ -1,0 +1,50 @@
+﻿<Window x:Class="TACSV.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TACSV"
+        mc:Ignorable="d"
+        Title="TACSV" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <UniformGrid DockPanel.Dock="Top" Rows="1" Height="30">
+                <UniformGrid.Resources>
+                    <Style TargetType="{x:Type Grid}">
+                        <Style.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="BorderThickness" Value="1"></Setter>
+                                
+                            </Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                <Setter Property="FontSize" Value="20"></Setter>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </UniformGrid.Resources>
+                <Grid>
+                    <Border BorderBrush="#FF020202"/>
+                    <TextBlock>Home</TextBlock>
+                </Grid>
+                <Grid>
+                    <Border BorderBrush="#FF020202"/>
+                    <TextBlock>Graphs</TextBlock>
+                </Grid>
+                <Grid>
+                    <Border BorderBrush="#FF020202"/>
+                    <TextBlock>Debug</TextBlock>
+                </Grid>
+                <Grid>
+                    <Border BorderBrush="#FF020202"/>
+                    <TextBlock>Settings</TextBlock>
+                </Grid>
+            </UniformGrid>
+
+            <Grid Background="Aqua" Margin="0,5,0,0">
+
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>
