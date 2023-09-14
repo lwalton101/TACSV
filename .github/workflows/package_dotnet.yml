@@ -29,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: TACSV
-          path: "/home/runner/work/TACSV/TACSV/TACSV/bin/Release/net7.0-windows/"
+          path: "D:\\a\\TACSV\\TACSV\\TACSV\\bin\\Release\\net7.0-windows\\"
