@@ -25,8 +25,16 @@ jobs:
         run: tree
       - name: dir
         run: pwd
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v2
-        with: 
-          name: TACSV_Artifact
-          path: "/home/runner/work/TACSV/TACSV/TACSV/bin/Release/net7.0-windows/"
+      - name: Compress
+        uses: TonyBogdanov/zip@1.0
+        with:
+            args: zip -qq -r ./TACSV.zip ./TACSV/bin/Release/net7.0-windows/
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.TOKEN_GITHUB }}
+          file: ./TACSV.zip
+          asset_name: mything
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "This is my release text"
