@@ -4,47 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TACSV"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="TACSV" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip">
     <Grid>
-        <DockPanel LastChildFill="True">
-            <UniformGrid DockPanel.Dock="Top" Rows="1" Height="30">
-                <UniformGrid.Resources>
-                    <Style TargetType="{x:Type Grid}">
-                        <Style.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="BorderThickness" Value="1"></Setter>
-                                
-                            </Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                                <Setter Property="FontSize" Value="20"></Setter>
-                            </Style>
-                        </Style.Resources>
-                    </Style>
-                </UniformGrid.Resources>
-                <Grid>
-                    <Border BorderBrush="#FF020202"/>
-                    <TextBlock>Home</TextBlock>
-                </Grid>
-                <Grid>
-                    <Border BorderBrush="#FF020202"/>
-                    <TextBlock>Graphs</TextBlock>
-                </Grid>
-                <Grid>
-                    <Border BorderBrush="#FF020202"/>
-                    <TextBlock>Debug</TextBlock>
-                </Grid>
-                <Grid>
-                    <Border BorderBrush="#FF020202"/>
-                    <TextBlock>Settings</TextBlock>
-                </Grid>
-            </UniformGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-            <Grid Background="Aqua" Margin="0,5,0,0">
+        <ui:ListView Width="200" SelectedItem="" SelectedValue="{Binding ElementName=homeViewItem, Mode=OneWay}">
+            <ui:ListView.Resources>
+                <Style TargetType="{x:Type ui:ListViewItem}">
+                    <Setter Property="Margin" Value="0,0,0,0"/>
+                </Style>
+            </ui:ListView.Resources>
+            <ui:ListViewItem x:Name="homeViewItem" Content="Home"/>
+            <ui:ListViewItem Content="Graphs"/>
+            <ui:ListViewItem Content="Data"/>
+            <ui:ListViewItem Content="Settings"/>
+            <ui:ListViewItem Content="Amin👍🙌🙌🙌"/>
+        </ui:ListView>
 
-            </Grid>
-        </DockPanel>
+        <Frame Source="/HomePage.xaml" Grid.Column="1" Visibility="Visible"/>
     </Grid>
 </Window>
