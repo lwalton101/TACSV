@@ -13,7 +13,10 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
         <TextBlock Text="Home Page" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <StackPanel Grid.Row="2">
+            <TextBlock Name="ConnectionStatus" Text="Connected: False"></TextBlock>
+        </StackPanel>
+        
     </Grid>
 </Page>

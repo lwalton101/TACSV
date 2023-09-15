@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,32 @@ namespace TACSV
 		public Settings()
 		{
 			InitializeComponent();
+		}
+
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+		{
+			PopulateCOMBox();
+		}
+
+		private void PopulateCOMBox()
+		{
+			var selectionBox = COMSelectionBox as ComboBox;
+			selectionBox.Items.Clear();
+			string[] ports = SerialPort.GetPortNames();
+			foreach (string port in ports)
+			{
+				selectionBox.Items.Add(port);
+			}
+		}
+
+		private void ReloadButton_Click(object sender, RoutedEventArgs e)
+		{
+			PopulateCOMBox();
+		}
+
+		private void ConnectButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

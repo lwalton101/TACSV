@@ -6,9 +6,20 @@
       xmlns:local="clr-namespace:TACSV"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Settings">
+      Title="Settings" Loaded="Page_Loaded">
 
-    <Grid>
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Settings" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <StackPanel Grid.Row="2">
+            <ComboBox Name="COMSelectionBox" ></ComboBox>
+            <Button Name="ReloadButton" Click="ReloadButton_Click">Reload</Button>
+            <Button Name="ConnectButton"  Click="ConnectButton_Click">Connect</Button>
+        </StackPanel>
         
     </Grid>
 </Page>
