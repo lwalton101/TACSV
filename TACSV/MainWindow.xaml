@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TACSV"
         xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="TACSV" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip">
@@ -28,5 +29,6 @@
         </ui:ListView>
 
         <Frame Source="/Home.xaml" Grid.Column="1" Visibility="Visible" Name="MainPanel" Navigated="MainPanel_Navigated" NavigationUIVisibility="Hidden"/>
+       
     </Grid>
 </Window>

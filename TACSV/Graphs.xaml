@@ -4,9 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TACSV"
+      xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="600"
-      Title="Graphs">
+      Title="Graphs"
+      Loaded="Page_Loaded">
 
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
@@ -15,5 +17,6 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Graphs Page" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <ScottPlot:WpfPlot x:Name="PlotControl" Margin="0,0,0,0" Grid.Row="1" />
     </Grid>
 </Page>
