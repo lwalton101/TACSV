@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TACSV
 {
@@ -46,8 +47,15 @@ namespace TACSV
 
 		private void RefreshTimeTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			Regex regex = new Regex("[0-9]");
-			e.Handled = !regex.IsMatch(e.Text);
+			try
+			{
+				Program.options.GraphAutoRefreshTime = int.Parse(((TextBox)e.Source).Text + e.Text);
+			}
+			catch
+			{
+				e.Handled = true;
+			}
+			
 		}
 
 		private void RefreshTimeTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -59,6 +67,18 @@ namespace TACSV
 				if (!regex.IsMatch(text))
 				{
 					e.CancelCommand();
+				}
+				else
+				{
+					try
+					{
+						Program.options.GraphAutoRefreshTime = int.Parse(((TextBox)e.Source).Text + text);
+					}
+					catch
+					{
+						e.CancelCommand();
+						e.Handled = true;
+					}
 				}
 			}
 			else
