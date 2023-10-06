@@ -17,6 +17,22 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Graphs Page" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <ScottPlot:WpfPlot x:Name="PlotControl" Margin="0,0,0,0" Grid.Row="1" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ScottPlot:WpfPlot Name="PlotControl"></ScottPlot:WpfPlot>
+            <Grid Grid.Row="1">
+                <StackPanel>
+                    <Button x:Name="AutoScaleButton" Click="AutoScaleButton_Click">Auto-Scale</Button>
+                    <Button x:Name="RefreshButton" Click="RefreshButton_Click">Refresh</Button>
+                    <TextBox Name="RefreshTimeTextBox" PreviewTextInput="RefreshTimeTextBox_PreviewTextInput" DataObject.Pasting="RefreshTimeTextBox_Pasting"></TextBox>
+                </StackPanel>
+               
+            </Grid>
+        </Grid>
+        
     </Grid>
 </Page>
