@@ -28,7 +28,9 @@
                 <StackPanel>
                     <Button x:Name="AutoScaleButton" Click="AutoScaleButton_Click">Auto-Scale</Button>
                     <Button x:Name="RefreshButton" Click="RefreshButton_Click">Refresh</Button>
-                    <TextBox Name="RefreshTimeTextBox" PreviewTextInput="RefreshTimeTextBox_PreviewTextInput" DataObject.Pasting="RefreshTimeTextBox_Pasting"></TextBox>
+                    <TextBox Name="RefreshTimeTextBox" TextChanged="RefreshTimeTextBox_TextChanged"></TextBox>
+                    <!--<CheckBox x:Name="AutoRefreshCheckBox" Content="Auto Refresh" Click="AutoRefreshCheckBox_Click"/>-->
+                    <DatePicker></DatePicker>
                 </StackPanel>
                
             </Grid>

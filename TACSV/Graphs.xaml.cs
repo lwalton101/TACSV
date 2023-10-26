@@ -20,6 +20,8 @@ namespace TACSV
 		List<double> dataX = new List<double>();
 		List<double> dataY = new List<double>();
 
+		DispatcherTimer autoRefreshGraphTimer = new DispatcherTimer();
+
         public Graphs()
         {
             InitializeComponent();
@@ -32,58 +34,72 @@ namespace TACSV
 			PlotControl.Plot.Add.Scatter(dataX, dataY);
 			PlotControl.Plot.AutoScale();
 			PlotControl.Refresh();
+
+			RefreshTimeTextBox.Text = Program.options.GraphAutoRefreshTime.ToString();
+
+			autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.options.GraphAutoRefreshTime);
+			autoRefreshGraphTimer.Tick += (sender, e) => RefreshGraph();
+
+			//AutoRefreshCheckBox.IsChecked = Program.options.GraphAutoRefreshEnabled;
+			RefreshGraph();
+			ControlAutoRefreshTimer();
+		}
+
+		private void RefreshGraph()
+		{
+			//Poll data
+			Trace.WriteLine("Updating graph");
+			PlotControl.Refresh();
+
+			
 		}
 
 		private void AutoScaleButton_Click(object sender, RoutedEventArgs e)
 		{
 			PlotControl.Plot.AutoScale();
-			PlotControl.Refresh();
+			RefreshGraph();
 		}
 
 		private void RefreshButton_Click(object sender, RoutedEventArgs e)
 		{
-			PlotControl.Refresh();
+			RefreshGraph();
 		}
 
-		private void RefreshTimeTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		private void RefreshTimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
 		{
+			var textBox = (TextBox)e.Source;
+			string text = textBox.Text;
 			try
 			{
-				Program.options.GraphAutoRefreshTime = int.Parse(((TextBox)e.Source).Text + e.Text);
+				Program.options.GraphAutoRefreshTime = int.Parse(text);
+				autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.options.GraphAutoRefreshTime);
 			}
 			catch
 			{
-				e.Handled = true;
+				foreach(var change in e.Changes)
+				{
+					textBox.Text = text.Substring(0, textBox.Text.Length - (change.AddedLength));
+				}
 			}
-			
 		}
 
-		private void RefreshTimeTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+		private void AutoRefreshCheckBox_Click(object sender, RoutedEventArgs e)
 		{
-			Regex regex = new Regex("[0-9]");
-			if (e.DataObject.GetDataPresent(typeof(String)))
+			CheckBox checkBox = (CheckBox)e.Source;
+			Program.options.GraphAutoRefreshEnabled = (bool)checkBox.IsChecked;
+			ControlAutoRefreshTimer();
+		}
+
+		private void ControlAutoRefreshTimer()
+		{
+			if (Program.options.GraphAutoRefreshEnabled)
 			{
-				String text = (String)e.DataObject.GetData(typeof(String));
-				if (!regex.IsMatch(text))
-				{
-					e.CancelCommand();
-				}
-				else
-				{
-					try
-					{
-						Program.options.GraphAutoRefreshTime = int.Parse(((TextBox)e.Source).Text + text);
-					}
-					catch
-					{
-						e.CancelCommand();
-						e.Handled = true;
-					}
-				}
+				autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.options.GraphAutoRefreshTime);
+				autoRefreshGraphTimer.Start();
 			}
 			else
 			{
-				e.CancelCommand();
+				autoRefreshGraphTimer.Stop();
 			}
 		}
 	}

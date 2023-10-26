@@ -9,9 +9,10 @@ namespace TACSV
 {
 	public static class Program
 	{
-		static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TACSVConfig.json");
+		static string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TACSV/TACSVConfig.json");
+
 		public static IApplicationOptions options = new ConfigurationBuilder<IApplicationOptions>()
-			.UseJsonFile(path)
+			.UseJsonFile(configPath)
 			.Build();
 	}
 }
