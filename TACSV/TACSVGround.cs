@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO.Ports;
+using System.Windows;
 
 namespace TACSV;
 
@@ -8,6 +9,9 @@ public class TACSVGround
 {
     private SerialPort _port;
     public event EventHandler<string> OnMessageRecieved;
+    public event EventHandler OnConnectionOpen;
+    public event EventHandler OnConnectionClosed;
+
     private string lineBeingRead = "";
     
     public string ComPort
@@ -33,6 +37,10 @@ public class TACSVGround
         _port = new SerialPort();
         _port.DtrEnable = true;
         _port.DataReceived += OnDataRecieved;
+        _port.ErrorReceived += (sender, e) =>
+        {
+            Trace.WriteLine(e.ToString());
+        };
     }
 
     private void OnDataRecieved(object sender, SerialDataReceivedEventArgs e)
@@ -50,6 +58,7 @@ public class TACSVGround
     public void Connect()
     {
         _port.Open();
+        OnConnectionOpen?.Invoke(this, EventArgs.Empty);
     }
 
 }
