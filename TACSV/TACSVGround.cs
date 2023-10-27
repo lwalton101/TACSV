@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
 
@@ -41,8 +42,8 @@ public class TACSVGround
         lineBeingRead += _port.ReadExisting();
         if (lineBeingRead.EndsWith("\n"))
         {
-            Console.WriteLine($"We got a line ender: {lineBeingRead}");
-            OnMessageRecieved.Invoke(this, lineBeingRead);
+            Trace.WriteLine($"We got a line ender: {lineBeingRead}");
+            OnMessageRecieved?.Invoke(this, lineBeingRead);
             lineBeingRead = "";
         }
     }
