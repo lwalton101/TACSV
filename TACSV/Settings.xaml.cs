@@ -49,7 +49,10 @@ namespace TACSV
 
 		private void ConnectButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			Program.Ground.BaudRate = 9600;
+			Program.Ground.ComPort = COMSelectionBox.Text;
+			
+			Program.Ground.Connect();
 		}
 	}
 }
