@@ -1,14 +1,12 @@
 using System;
 using System.Diagnostics;
 using System.IO.Ports;
-using System.Threading;
 
 namespace TACSV;
 
 public class TACSVGround
 {
     private SerialPort _port;
-    private Thread _thread;
     public event EventHandler<string> OnMessageRecieved;
     private string lineBeingRead = "";
     
