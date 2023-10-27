@@ -10,9 +10,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TACSV
 {
-    /// <summary>
-    /// Interaction logic for Graphs.xaml
-    /// </summary>
     public partial class Graphs : Page
     {
 
@@ -40,14 +37,12 @@ namespace TACSV
 			autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.Options.GraphAutoRefreshTime);
 			autoRefreshGraphTimer.Tick += (sender, e) => RefreshGraph();
 
-			//AutoRefreshCheckBox.IsChecked = Program.options.GraphAutoRefreshEnabled;
 			RefreshGraph();
-			ControlAutoRefreshTimer();
+			ResetAutoRefreshTimer();
 		}
 
 		private void RefreshGraph()
 		{
-			//Poll data
 			Trace.WriteLine("Updating graph");
 			PlotControl.Refresh();
 		}
@@ -85,10 +80,10 @@ namespace TACSV
 		{
 			CheckBox checkBox = (CheckBox)e.Source;
 			Program.Options.GraphAutoRefreshEnabled = (bool)checkBox.IsChecked;
-			ControlAutoRefreshTimer();
+			ResetAutoRefreshTimer();
 		}
 
-		private void ControlAutoRefreshTimer()
+		private void ResetAutoRefreshTimer()
 		{
 			if (Program.Options.GraphAutoRefreshEnabled)
 			{
