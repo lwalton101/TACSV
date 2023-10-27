@@ -40,6 +40,7 @@ public class TACSVGround
         lineBeingRead += _port.ReadExisting();
         if (lineBeingRead.EndsWith("\n"))
         {
+            lineBeingRead = lineBeingRead.Trim();
             Trace.WriteLine($"We got a line ender: {lineBeingRead}");
             OnMessageRecieved?.Invoke(this, lineBeingRead);
             lineBeingRead = "";
