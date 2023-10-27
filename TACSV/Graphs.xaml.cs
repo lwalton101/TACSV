@@ -50,8 +50,6 @@ namespace TACSV
 			//Poll data
 			Trace.WriteLine("Updating graph");
 			PlotControl.Refresh();
-
-			
 		}
 
 		private void AutoScaleButton_Click(object sender, RoutedEventArgs e)
