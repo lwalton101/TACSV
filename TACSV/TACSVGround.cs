@@ -37,11 +37,8 @@ public class TACSVGround
         _port = new SerialPort();
         _port.DtrEnable = true;
         _port.DataReceived += OnDataRecieved;
-        _port.ErrorReceived += (sender, e) =>
-        {
-            Trace.WriteLine(e.ToString());
-        };
-    }
+		_port.ErrorReceived += (sender, e) => Trace.WriteLine(e.ToString());
+	}
 
     private void OnDataRecieved(object sender, SerialDataReceivedEventArgs e)
     {
