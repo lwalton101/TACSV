@@ -38,7 +38,11 @@ namespace TACSV
 			string[] ports = SerialPort.GetPortNames();
 			foreach (string port in ports)
 			{
-				selectionBox.Items.Add(port);
+				if(!selectionBox.Items.Contains(port))
+				{
+					selectionBox.Items.Add(port);
+				}
+				
 			}
 		}
 
