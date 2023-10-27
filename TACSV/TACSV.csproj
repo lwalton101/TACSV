@@ -12,6 +12,7 @@
       <PackageReference Include="Config.Net" Version="5.1.5" />
       <PackageReference Include="ModernWpfUI" Version="0.9.6" />
       <PackageReference Include="ScottPlot.WPF" Version="5.0.8-beta" />
+      <PackageReference Include="Simple.Wpf.Terminal" Version="2.3.57" />
       <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.6" />
       <PackageReference Include="System.IO.Ports" Version="7.0.0" />
     </ItemGroup>
