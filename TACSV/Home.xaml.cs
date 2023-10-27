@@ -1,28 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TACSV
 {
-    /// <summary>
-    /// Interaction logic for HomePage.xaml
-    /// </summary>
     public partial class HomePage : Page
     {
         public HomePage()
         {
             InitializeComponent();
         }
-    }
+
+		private void Page_Loaded(object sender, RoutedEventArgs e)
+		{
+			ConnectionStatus.Text = Program.Ground.IsOpen ? "Connected!" : "Not connected :(";
+			Program.Ground.OnConnectionOpen += (_,_) => ConnectionStatus.Text = "Connected!";
+			Program.Ground.OnConnectionClosed += (_, _) => ConnectionStatus.Text = "Not Connected :(";
+		}
+
+		private void Page_Unloaded(object sender, RoutedEventArgs e)
+		{
+			Program.Ground.OnConnectionOpen -= (_, _) => ConnectionStatus.Text = "Connected!";
+			Program.Ground.OnConnectionClosed -= (_, _) => ConnectionStatus.Text = "Not Connected :(";
+		}
+	}
 }

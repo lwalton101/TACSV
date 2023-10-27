@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:TACSV"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="600"
-      Title="HomePage">
+      Title="HomePage"
+      Loaded="Page_Loaded"
+      Unloaded="Page_Unloaded">
 
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
