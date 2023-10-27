@@ -37,5 +37,10 @@ namespace TACSV
 		{
             MainPanel.NavigationService.RemoveBackEntry();
 		}
+
+		private void Window_Closed(object sender, EventArgs e)
+		{
+            Environment.Exit(Environment.ExitCode);
+		}
 	}
 }

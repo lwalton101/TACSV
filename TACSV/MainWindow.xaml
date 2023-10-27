@@ -8,7 +8,7 @@
         xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
-        Title="TACSV" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip">
+        Title="TACSV" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
