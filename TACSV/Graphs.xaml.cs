@@ -35,9 +35,9 @@ namespace TACSV
 			PlotControl.Plot.AutoScale();
 			PlotControl.Refresh();
 
-			RefreshTimeTextBox.Text = Program.options.GraphAutoRefreshTime.ToString();
+			RefreshTimeTextBox.Text = Program.Options.GraphAutoRefreshTime.ToString();
 
-			autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.options.GraphAutoRefreshTime);
+			autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.Options.GraphAutoRefreshTime);
 			autoRefreshGraphTimer.Tick += (sender, e) => RefreshGraph();
 
 			//AutoRefreshCheckBox.IsChecked = Program.options.GraphAutoRefreshEnabled;
@@ -71,8 +71,8 @@ namespace TACSV
 			string text = textBox.Text;
 			try
 			{
-				Program.options.GraphAutoRefreshTime = int.Parse(text);
-				autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.options.GraphAutoRefreshTime);
+				Program.Options.GraphAutoRefreshTime = int.Parse(text);
+				autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.Options.GraphAutoRefreshTime);
 			}
 			catch
 			{
@@ -86,15 +86,15 @@ namespace TACSV
 		private void AutoRefreshCheckBox_Click(object sender, RoutedEventArgs e)
 		{
 			CheckBox checkBox = (CheckBox)e.Source;
-			Program.options.GraphAutoRefreshEnabled = (bool)checkBox.IsChecked;
+			Program.Options.GraphAutoRefreshEnabled = (bool)checkBox.IsChecked;
 			ControlAutoRefreshTimer();
 		}
 
 		private void ControlAutoRefreshTimer()
 		{
-			if (Program.options.GraphAutoRefreshEnabled)
+			if (Program.Options.GraphAutoRefreshEnabled)
 			{
-				autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.options.GraphAutoRefreshTime);
+				autoRefreshGraphTimer.Interval = TimeSpan.FromSeconds(Program.Options.GraphAutoRefreshTime);
 				autoRefreshGraphTimer.Start();
 			}
 			else
