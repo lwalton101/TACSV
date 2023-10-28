@@ -12,6 +12,7 @@ namespace TACSV
     public partial class MainWindow : Window
     {
         int number = 0;
+        public string entries = "";
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace TACSV
 
 		private void MainPanel_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
 		{
+            //Removes history bar from top of panel
             MainPanel.NavigationService.RemoveBackEntry();
 		}
 

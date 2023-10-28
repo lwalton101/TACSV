@@ -1,0 +1,24 @@
+﻿<Page x:Class="TACSV.Console"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TACSV"
+      xmlns:t="clr-namespace:Simple.Wpf.Terminal;assembly=Simple.Wpf.Terminal"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Console" Loaded="Page_Loaded">
+
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ScrollViewer Name="ConsoleScrollViewer">
+            <TextBlock Name="ConsoleTextBlock" Foreground="DarkGreen" FontFamily="Consolas" FontSize="24" Background="Black">Text</TextBlock>
+        </ScrollViewer>
+        
+        <TextBox Name="ConsoleInput" Grid.Row="2" VerticalContentAlignment="Center" Foreground="DarkGreen" FontFamily="Consolas" FontSize="24" Background="#FF212121" KeyDown="ConsoleInput_KeyDown"></TextBox>
+        
+    </Grid>
+</Page>

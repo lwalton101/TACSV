@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TACSV"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="TACSV" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip" Closed="Window_Closed">
@@ -26,6 +25,7 @@
             <ui:ListViewItem Content="Data" Selected="ListView_Selected"/>
             <ui:ListViewItem Content="Settings" Selected="ListView_Selected"/>
             <ui:ListViewItem Content="Amin" Selected="ListView_Selected"/>
+            <ui:ListViewItem Content="Console" Selected="ListView_Selected"/>
         </ui:ListView>
 
         <Frame Source="/Home.xaml" Grid.Column="1" Visibility="Visible" Name="MainPanel" Navigated="MainPanel_Navigated" NavigationUIVisibility="Hidden"/>
