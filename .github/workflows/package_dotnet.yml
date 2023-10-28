@@ -23,7 +23,7 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
       - name: View Files
         run: tree
-      - name: dir
+      - name: Set hash var
         run: echo %cd%
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
@@ -31,8 +31,4 @@ jobs:
           name: TACSV
           path: D:\a\TACSV\TACSV\TACSV\bin\Debug\net7.0-windows\
       - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: TACSV.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        run: gh release upload ${{ github.sha }} TACSV.zip
