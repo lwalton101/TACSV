@@ -17,6 +17,13 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Generate release tag
+        id: generate_release_tag
+        uses: amitsingh-007/next-release-tag@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: 'v'
+          tag_template: 'yyyy.mm.dd.i'
       - name: Install dependencies
         run: dotnet restore
       - name: Build
@@ -34,6 +41,6 @@ jobs:
           files: D:\a\TACSV\TACSV\TACSV\bin\Debug\net7.0-windows\
           dest: TACSV.zip
       - name: Create Release on GH Releases
-        run: gh release create mainRelease --latest
+        run: gh release create ${{ steps.generate_release_tag.outputs.next_release_tag }} --latest
       - name: Release on GH Releases
-        run: gh release upload mainRelease TACSV.zip
+        run: gh release upload ${{ steps.generate_release_tag.outputs.next_release_tag }} TACSV.zip
