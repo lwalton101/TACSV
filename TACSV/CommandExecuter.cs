@@ -68,7 +68,11 @@ namespace TACSV
 		[Command("help", "help", "Displays this help screen")]
 		public static void HelpCommand(string message)
 		{
-			TACSVConsole.Log("Get some help bitch");
+			TACSVConsole.Log($"List of commands:");
+			foreach (var pair in commands)
+			{
+				TACSVConsole.Log($"{pair.Key.name} : {pair.Key.description}");
+			}
 		}
 
 		[Command("ping", "ping", "Pings the satelite to confirm radio is working")]
