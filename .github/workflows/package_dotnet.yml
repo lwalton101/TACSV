@@ -34,6 +34,6 @@ jobs:
           files: D:\a\TACSV\TACSV\TACSV\bin\Debug\net7.0-windows\
           dest: TACSV.zip
       - name: Create Release on GH Releases
-        run: gh release create ${{ github.sha }}
+        run: gh release create mainRelease --latest
       - name: Release on GH Releases
-        run: gh release upload ${{ github.sha }} TACSV.zip
+        run: gh release upload mainRelease TACSV.zip
