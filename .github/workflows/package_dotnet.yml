@@ -23,8 +23,6 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
       - name: View Files
         run: tree
-      - name: Set hash var
-        run: echo %cd%
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with: 
