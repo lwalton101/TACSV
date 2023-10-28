@@ -21,8 +21,6 @@ jobs:
         run: dotnet build 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
-      - name: View Files
-        run: tree
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with: 
