@@ -44,5 +44,11 @@ namespace TACSV
 		{
             Environment.Exit(Environment.ExitCode);
 		}
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			Trace.WriteLine("Register Commands(main winow)");
+			CommandExecuter.RegisterCommands();
+		}
 	}
 }

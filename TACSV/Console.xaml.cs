@@ -28,10 +28,17 @@ namespace TACSV
 
 		private void ConsoleInput_KeyDown(object sender, KeyEventArgs e)
 		{
+            if(ConsoleInput.Text == "")
+            {
+                e.Handled = false;
+                return;
+            }
             if(e.Key == Key.Enter)
             {
                 Trace.WriteLine("Enter has been pressed");
-                TACSVConsole.Log(ConsoleInput.Text);
+                TACSVConsole.Command(ConsoleInput.Text);
+                ConsoleInput.Text = "";
+                
                 ConsoleScrollViewer.ScrollToBottom();
             }
 		}
@@ -40,13 +47,16 @@ namespace TACSV
 		{
             Trace.WriteLine("Loaded console page");
 			TACSVConsole.OnNewMessage += TACSVConsole_OnNewMessage;
-            ConsoleTextBlock.Text = "TACSV Console\n\n" + TACSVConsole.GetEntriesString();
+			RefreshConsole();
 		}
 
 		private void TACSVConsole_OnNewMessage(string message)
 		{
             Trace.WriteLine("OnNewMessage Fired");
-            ConsoleTextBlock.Text = "TACSV Console\n\n" + TACSVConsole.GetEntriesString();
+            RefreshConsole();
+			ConsoleScrollViewer.ScrollToBottom();
 		}
+
+        private void RefreshConsole() => ConsoleTextBlock.Text = "TACSV Console\nType 'help' for more info\n\n" + TACSVConsole.GetEntriesString();
 	}
 }

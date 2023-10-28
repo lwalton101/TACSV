@@ -12,11 +12,18 @@ namespace TACSV
         private static List<String> entries = new List<String>();
         public static event Action<String> OnNewMessage;
 
+
         public static void Log(string message)
         {
 			Trace.WriteLine("Logging TACSVConsole");
 			entries.Add(message);
             OnNewMessage?.Invoke(message);
+        }
+
+        public static void Command(string message)
+        {
+            Log("> " + message);
+            CommandExecuter.Execute(message);
         }
 
         public static string GetEntriesString()
@@ -25,7 +32,7 @@ namespace TACSV
             {
                 return "> ";
             }
-            return "> " + string.Join("\n> ", entries) + "\n> ";
+            return string.Join("\n", entries) + "\n> ";
         }
     }
 }
