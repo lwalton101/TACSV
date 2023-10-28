@@ -30,3 +30,9 @@ jobs:
         with: 
           name: TACSV
           path: D:\a\TACSV\TACSV\TACSV\bin\Debug\net7.0-windows\
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: TACSV.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
