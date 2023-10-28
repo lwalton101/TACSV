@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <ScrollViewer Name="ConsoleScrollViewer">
-            <TextBlock Name="ConsoleTextBlock" Foreground="DarkGreen" FontFamily="Consolas" FontSize="24" Background="Black">Text</TextBlock>
+            <TextBlock Name="ConsoleTextBlock" Foreground="DarkGreen" FontFamily="Consolas" FontSize="24" Background="Black" TextWrapping="Wrap">Text</TextBlock>
         </ScrollViewer>
         
         <TextBox Name="ConsoleInput" Grid.Row="2" VerticalContentAlignment="Center" Foreground="DarkGreen" FontFamily="Consolas" FontSize="24" Background="#FF212121" KeyDown="ConsoleInput_KeyDown"></TextBox>
