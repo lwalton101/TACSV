@@ -43,6 +43,18 @@ namespace TACSV
 			TACSVConsole.Log($"Unkown Command: {commandString}");
 		}
 
+		private static KeyValuePair<CommandAttribute, MethodInfo>? GetPairByName(string name)
+		{
+			foreach(var pair in commands)
+			{
+				if (pair.Key.name == name)
+				{
+					return pair;
+				}
+			}
+			return null;
+		}
+
 		public static void RegisterCommands()
 		{
 			Trace.WriteLine("Registering Commands");
@@ -73,6 +85,36 @@ namespace TACSV
 			{
 				TACSVConsole.Log($"{pair.Key.name} : {pair.Key.description}");
 			}
+		}
+
+		[Command("cmdInfo", "cmdInfo <cmdName>", "Displays more info about a specific command")]
+		public static void CmdInfoCommand(string message)
+		{
+			var messageParts = message.Split(" ");
+			var cmdUsage = GetPairByName(messageParts[0]);
+
+			if((cmdUsage) == null)
+			{
+				return;
+			}
+
+			if(messageParts.Length < 2) 
+			{
+				TACSVConsole.Log($"Wrong usage. {cmdUsage}");
+				return;
+			}
+
+			var cmdInfoPairNull = GetPairByName(messageParts[1]);
+			if(cmdInfoPairNull == null)
+			{
+				TACSVConsole.Log($"Cannot find command {messageParts[1]}");
+				return;
+			}
+			var cmdInfoPair = (KeyValuePair<CommandAttribute, MethodInfo>)cmdInfoPairNull;
+			TACSVConsole.Log($"Command {cmdInfoPair.Key.name}:");
+			TACSVConsole.Log($"Usage: {cmdInfoPair.Key.usage}");
+			TACSVConsole.Log($"Description: {cmdInfoPair.Key.description}");
+			TACSVConsole.Log($"Method Name: {cmdInfoPair.Value.Name}");
 		}
 
 		[Command("ping", "ping", "Pings the satelite to confirm radio is working")]
