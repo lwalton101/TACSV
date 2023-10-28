@@ -24,6 +24,7 @@ namespace TACSV
         {
             Log("> " + message);
             CommandExecuter.Execute(message);
+            Log("");
         }
 
         public static string GetEntriesString()
