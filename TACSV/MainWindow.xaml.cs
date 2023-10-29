@@ -42,6 +42,7 @@ namespace TACSV
 
 		private void Window_Closed(object sender, EventArgs e)
 		{
+            DataManager.CloseDatabase();
             Environment.Exit(Environment.ExitCode);
 		}
 
@@ -49,6 +50,7 @@ namespace TACSV
 		{
 			Trace.WriteLine("Register Commands(main winow)");
 			CommandExecuter.RegisterCommands();
+            DataManager.InitialiseDatabase();
 		}
 	}
 }
