@@ -1,6 +1,13 @@
 name: package dotnet
 
-on: [push]
+on:
+  push:
+    branches:
+      - 'main'
+      - 'releases/**'
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
