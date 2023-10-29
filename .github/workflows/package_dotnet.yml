@@ -1,8 +1,6 @@
 name: package dotnet
 
 on: [push]
-env:
-  GH_TOKEN: ${{ secrets.TOKEN_GITHUB }}
 
 jobs:
   build:
