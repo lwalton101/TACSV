@@ -4,31 +4,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TACSV"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:ui="http://schemas.modernwpf.com/2019" xmlns:viewmodels="clr-namespace:TACSV.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         ui:WindowHelper.UseModernWindowStyle="True"
         mc:Ignorable="d"
         Title="TACSV" Height="450" Width="800" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+            <local:HomePage></local:HomePage>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+            <local:Settings></local:Settings>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <ui:ListView Width="200" SelectedValue="{Binding ElementName=homeViewItem, Mode=OneWay}" SelectedIndex="0">
-            <ui:ListView.Resources>
-                <Style TargetType="{x:Type ui:ListViewItem}">
-                    <Setter Property="Margin" Value="0,0,0,0"/>
-                </Style>
-            </ui:ListView.Resources>
-            <ui:ListViewItem x:Name="homeViewItem" Content="Home" Selected="ListView_Selected"/>
-            <ui:ListViewItem Content="Graphs" Selected="ListView_Selected"/>
-            <ui:ListViewItem Content="Data" Selected="ListView_Selected"/>
-            <ui:ListViewItem Content="Settings" Selected="ListView_Selected"/>
-            <ui:ListViewItem Content="Amin" Selected="ListView_Selected"/>
-            <ui:ListViewItem Content="Console" Selected="ListView_Selected"/>
+        <ui:ListView ItemsSource="{Binding SidebarModels}" SelectedItem="{Binding SelectedItem}" SelectedIndex="0" Name="Sidebar">
+            <ui:ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ui:ListView.ItemTemplate>
         </ui:ListView>
+        
+        <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1">
+            
+        </ContentControl>
 
-        <Frame Source="/Home.xaml" Grid.Column="1" Visibility="Visible" Name="MainPanel" Navigated="MainPanel_Navigated" NavigationUIVisibility="Hidden"/>
-       
+
+
     </Grid>
 </Window>

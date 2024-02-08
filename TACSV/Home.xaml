@@ -1,4 +1,4 @@
-﻿<Page x:Class="TACSV.HomePage"
+﻿<UserControl x:Class="TACSV.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:TACSV"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="600"
-      Title="HomePage"
       Loaded="Page_Loaded"
       Unloaded="Page_Unloaded">
 
@@ -21,4 +20,4 @@
         </StackPanel>
         
     </Grid>
-</Page>
+</UserControl>

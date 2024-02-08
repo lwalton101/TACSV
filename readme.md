@@ -46,7 +46,7 @@ Team Artemis Can Sat Viewer
 - Get battery of the satellite from TACSV
 
 ### Message Format
-Not done yet
+1 character at the beginning meaning the id and then the rest of the id
 #### Idea 1
 Message has 2 characters at beginning noting the message id.
 Each message type has a different id.

@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using ModernWpf.Controls;
+using TACSV.ViewModels;
+using ListView = ModernWpf.Controls.ListView;
 
 namespace TACSV
 {
@@ -16,29 +18,10 @@ namespace TACSV
         public MainWindow()
         {
             InitializeComponent();
+
+            var viewModel = new MainWindowViewModel();
+            DataContext = viewModel;
         }
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-            Trace.WriteLine(((Button)e.OriginalSource).Content.ToString());
-            number++;
-		}
-
-		private void ListView_Selected(object sender, RoutedEventArgs e)
-		{
-            if (e.OriginalSource == null | MainPanel == null)
-            {
-                return;
-            }
-            var listView = e.OriginalSource as ModernWpf.Controls.ListViewItem;
-            MainPanel.Navigate(new Uri($"{listView.Content}.xaml", UriKind.Relative));
-        }
-
-		private void MainPanel_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-		{
-            //Removes history bar from top of panel
-            MainPanel.NavigationService.RemoveBackEntry();
-		}
 
 		private void Window_Closed(object sender, EventArgs e)
 		{
@@ -51,6 +34,7 @@ namespace TACSV
 			Trace.WriteLine("Register Commands(main winow)");
 			CommandExecuter.RegisterCommands();
             DataManager.InitialiseDatabase();
+            Sidebar.SelectedIndex = 0;
 		}
 	}
 }

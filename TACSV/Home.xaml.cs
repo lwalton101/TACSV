@@ -2,14 +2,17 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using TACSV.ViewModels;
 
 namespace TACSV
 {
-    public partial class HomePage : Page
+    public partial class HomePage : UserControl
     {
         public HomePage()
         {
             InitializeComponent();
+			var viewModel = new HomeViewModel();
+			DataContext = viewModel;
         }
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
