@@ -29,10 +29,18 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
+      <Page Update="Views\Home.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
       <Compile Update="Views\Settings.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Home.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
