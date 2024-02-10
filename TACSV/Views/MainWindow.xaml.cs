@@ -25,16 +25,14 @@ namespace TACSV
 
 		private void Window_Closed(object sender, EventArgs e)
 		{
-            DataManager.CloseDatabase();
-            Environment.Exit(Environment.ExitCode);
+			Environment.Exit(Environment.ExitCode);
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			Trace.WriteLine("Register Commands(main winow)");
 			CommandExecuter.RegisterCommands();
-            DataManager.InitialiseDatabase();
-            Sidebar.SelectedIndex = 0;
+			Sidebar.SelectedIndex = 0;
 		}
 	}
 }
