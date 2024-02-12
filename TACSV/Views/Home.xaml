@@ -6,6 +6,8 @@
       xmlns:local="clr-namespace:TACSV"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="600"
+      xmlns:viewmodels="clr-namespace:TACSV.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
       Loaded="Page_Loaded"
       Unloaded="Page_Unloaded">
 

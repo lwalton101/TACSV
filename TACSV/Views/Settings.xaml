@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:TACSV"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="600"
-      Loaded="Page_Loaded">
+      xmlns:viewmodels="clr-namespace:TACSV.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:SettingsViewModel}">
 
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
@@ -16,9 +17,9 @@
 
         <TextBlock Text="Settings" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <StackPanel Grid.Row="2">
-            <ComboBox Name="COMSelectionBox" ></ComboBox>
-            <Button Name="ReloadButton" Click="ReloadButton_Click">Reload</Button>
-            <Button Name="ConnectButton"  Click="ConnectButton_Click">Connect</Button>
+            <ComboBox Name="ComSelectionBox" ItemsSource="{Binding ComPorts}" SelectedIndex="{Binding ComPort}"></ComboBox>
+            <Button Name="ReloadButton" Command="{Binding RefreshCommand}">Reload</Button>
+            <Button Name="ConnectButton" Command="{Binding ConnectCommand}" >Connect</Button>
         </StackPanel>
         
     </Grid>
