@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using ModernWpf.Controls;
 using TACSV.ViewModels;
-using ListView = ModernWpf.Controls.ListView;
 
 namespace TACSV
 {
