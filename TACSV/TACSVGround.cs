@@ -14,10 +14,9 @@ public class TACSVGround
     public event EventHandler OnConnectionOpen;
     public event EventHandler OnConnectionClosed;
 
-    private string lineBeingRead = "";
-	public bool lastConnectionStatus = false;
-    private Thread connectionCheckingThread;
-    
+    private string _lineBeingRead = "";
+    private bool _lastConnectionStatus;
+
     public string ComPort
     {
         get => _port.PortName;
@@ -43,7 +42,7 @@ public class TACSVGround
         _port.DataReceived += OnDataRecieved;
 		_port.ErrorReceived += (sender, e) => Trace.WriteLine(e.ToString());
 
-        connectionCheckingThread = new Thread(CheckForLostConnection);
+        var connectionCheckingThread = new Thread(CheckForLostConnection);
         connectionCheckingThread.IsBackground = false;
         connectionCheckingThread.Start();
     }
@@ -52,12 +51,12 @@ public class TACSVGround
     {
         while (true)
         {
-            if (lastConnectionStatus && !_port.IsOpen)
+            if (_lastConnectionStatus && !_port.IsOpen)
             {
                 TACSVConsole.Log("Connection Lost");
                 Application.Current.Dispatcher.Invoke(() => OnConnectionClosed?.Invoke(this, EventArgs.Empty));
             }
-            lastConnectionStatus = _port.IsOpen;
+            _lastConnectionStatus = _port.IsOpen;
             //THIS IS A WIERD RACE CONDITION
             //DO NOT REMOVE THIS LINE, PORT CLOSING IS NOT DETECTED OTHERWISE
             Thread.Sleep(100);
@@ -66,13 +65,13 @@ public class TACSVGround
 
     private void OnDataRecieved(object sender, SerialDataReceivedEventArgs e)
     {
-        lineBeingRead += _port.ReadExisting();
-        if (lineBeingRead.EndsWith("\n"))
+        _lineBeingRead += _port.ReadExisting();
+        if (_lineBeingRead.EndsWith("\n"))
         {
-            lineBeingRead = lineBeingRead.Trim();
-            TACSVConsole.Log($"Message Recieved: {lineBeingRead}");
-            OnMessageRecieved?.Invoke(this, lineBeingRead);
-            lineBeingRead = "";
+            _lineBeingRead = _lineBeingRead.Trim();
+            TACSVConsole.Log($"Message Recieved: {_lineBeingRead}");
+            OnMessageRecieved?.Invoke(this, _lineBeingRead);
+            _lineBeingRead = "";
         }
     }
 
