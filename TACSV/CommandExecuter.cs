@@ -54,7 +54,6 @@ namespace TACSV
 
 		public static void RegisterCommands()
 		{
-			Trace.WriteLine("Registering Commands");
 			var listOfMethods = typeof(CommandExecuter)
 				.GetMethods();
 			var listOfCommandMethods = typeof(CommandExecuter)
@@ -64,8 +63,7 @@ namespace TACSV
 
             foreach (var methodInfo in listOfCommandMethods)
             {
-				Trace.WriteLine("command register");
-				var cmdAttribute = methodInfo.GetCustomAttribute<CommandAttribute>(false);
+	            var cmdAttribute = methodInfo.GetCustomAttribute<CommandAttribute>(false);
 				if(cmdAttribute == null)
 				{
 					continue;

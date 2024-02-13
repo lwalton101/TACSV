@@ -10,9 +10,7 @@ namespace TACSV
     /// </summary>
     public partial class MainWindow : Window
     {
-        int number = 0;
-        public string entries = "";
-        public MainWindow()
+	    public MainWindow()
         {
             InitializeComponent();
 
@@ -27,7 +25,7 @@ namespace TACSV
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			Trace.WriteLine("Register Commands(main winow)");
+			TACSVConsole.Log("TACSV Loaded!");
 			CommandExecuter.RegisterCommands();
 			Sidebar.SelectedIndex = 0;
 		}

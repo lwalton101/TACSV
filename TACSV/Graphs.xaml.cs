@@ -40,7 +40,7 @@ namespace TACSV
 
 		private void RefreshGraph()
 		{
-			Trace.WriteLine("Updating graph");
+			
 			PlotControl.Refresh();
 		}
 

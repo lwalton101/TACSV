@@ -25,7 +25,8 @@ namespace TACSV.ViewModels
 				_sidebarModels ??= new ObservableCollection<SidebarItemViewModel>
 					{
 						new SidebarItemViewModel { Name = "Home" },
-						new SidebarItemViewModel { Name = "Settings" }
+						new SidebarItemViewModel { Name = "Settings" },
+						new SidebarItemViewModel { Name = "Console"}
 					};
 				return _sidebarModels;
 			}
@@ -51,13 +52,19 @@ namespace TACSV.ViewModels
 
 		private void HandleSelectionChange()
 		{
-			if(SelectedItem.Name == "Home")
+			switch (SelectedItem.Name)
 			{
-				CurrentViewModel = new HomeViewModel();
-			}
-			else
-			{
-				CurrentViewModel = new SettingsViewModel();
+				case "Home":
+					CurrentViewModel = new HomeViewModel();
+					break;
+				case "Settings":
+					CurrentViewModel = new SettingsViewModel();
+					break;
+				case "Console":
+					CurrentViewModel = new ConsoleViewModel();
+					break;
+				default:
+					break;
 			}
 		}
 	}
