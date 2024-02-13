@@ -26,7 +26,6 @@ namespace TACSV
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			TACSVConsole.Log("TACSV Loaded!");
-			CommandExecuter.RegisterCommands();
 			Sidebar.SelectedIndex = 0;
 		}
 	}

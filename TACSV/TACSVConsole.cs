@@ -16,13 +16,6 @@ namespace TACSV
 			Entries.Add($"[{DateTime.Now}] {message}");
         }
 
-        public static void Command(string message)
-        {
-            Log("> " + message);
-            CommandExecuter.Execute(message);
-            Log("");
-        }
-
         public static string GetEntriesString()
         {
             return string.Join("\n", Entries);
