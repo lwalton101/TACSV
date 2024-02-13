@@ -8,7 +8,7 @@ namespace TACSV;
 
 public class TACSVGround
 {
-    private SerialPort _port;
+    private readonly SerialPort _port;
     public bool IsOpen => _port.IsOpen;
     public event EventHandler<string> OnMessageRecieved;
     public event EventHandler OnConnectionOpen;
