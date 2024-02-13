@@ -54,7 +54,7 @@ public class TACSVGround
         {
             if (lastConnectionStatus && !_port.IsOpen)
             {
-                Trace.WriteLine("Connection Lost");
+                TACSVConsole.Log("Connection Lost");
                 Application.Current.Dispatcher.Invoke(() => OnConnectionClosed?.Invoke(this, EventArgs.Empty));
             }
             lastConnectionStatus = _port.IsOpen;
@@ -70,7 +70,7 @@ public class TACSVGround
         if (lineBeingRead.EndsWith("\n"))
         {
             lineBeingRead = lineBeingRead.Trim();
-            Trace.WriteLine($"We got a line ender: {lineBeingRead}");
+            TACSVConsole.Log($"We got a line ender: {lineBeingRead}");
             OnMessageRecieved?.Invoke(this, lineBeingRead);
             lineBeingRead = "";
         }
