@@ -70,7 +70,7 @@ public class TACSVGround
         if (lineBeingRead.EndsWith("\n"))
         {
             lineBeingRead = lineBeingRead.Trim();
-            TACSVConsole.Log($"We got a line ender: {lineBeingRead}");
+            TACSVConsole.Log($"Message Recieved: {lineBeingRead}");
             OnMessageRecieved?.Invoke(this, lineBeingRead);
             lineBeingRead = "";
         }
@@ -79,6 +79,7 @@ public class TACSVGround
     public void Connect()
     {
         _port.Open();
+        TACSVConsole.Log($"Connected on {ComPort}");
         OnConnectionOpen?.Invoke(this, EventArgs.Empty);
     }
 }
