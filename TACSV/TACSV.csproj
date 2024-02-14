@@ -51,4 +51,11 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Config\BaseConfig.json" />
+      <EmbeddedResource Include="Config\BaseConfig.json">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
 </Project>

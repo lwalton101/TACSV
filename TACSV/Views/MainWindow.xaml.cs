@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using TACSV.Config;
 using TACSV.ViewModels;
 
 namespace TACSV
@@ -25,7 +26,8 @@ namespace TACSV
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			TACSVConsole.Log("TACSV Loaded!");
+			TACSVConsole.Log("TACSV Loaded!"); 
+			ConfigManager.Initialise();
 			Sidebar.SelectedIndex = 0;
 		}
 	}
