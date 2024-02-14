@@ -12,20 +12,26 @@ public class ConfigManager
     public static void Initialise()
     {
         string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TACSV");
+        if (!Directory.Exists(appDataPath))
+        {
+            Directory.CreateDirectory(appDataPath);
+        }
+        
         string configPath = Path.Combine(appDataPath, "TACSVConfig.json");
         if (!File.Exists(configPath))
         {
-            File.Create(configPath);
-            File.WriteAllText(configPath, GetBaseConfig());
+            File.Create(configPath).Close();
+            var t = GetBaseConfig();
+            File.WriteAllText(configPath, t);
         }
-
+        
         string configData = File.ReadAllText(configPath);
         Options = JsonSerializer.Deserialize<ApplicationOptions>(configData) ?? throw new Exception("Config Invalid");
     }
 
     private static string GetBaseConfig()
     {
-        var resourceName = "TACSV.Resources.BaseConfig.json";
+        var resourceName = "TACSV.Config.BaseConfig.json";
         var assembly = Assembly.GetExecutingAssembly();
         using Stream? stream = assembly.GetManifestResourceStream(resourceName);
         if (stream != null)
