@@ -69,9 +69,14 @@ public class TACSVGround
         if (_lineBeingRead.EndsWith("\n"))
         {
             _lineBeingRead = _lineBeingRead.Trim();
-            TACSVConsole.Log($"Message Recieved: {_lineBeingRead}");
-            OnMessageRecieved?.Invoke(this, _lineBeingRead);
-            _lineBeingRead = "";
+            var lines = _lineBeingRead.Split("\n");
+            foreach (var line in lines)
+            {
+                var trimmedLine = line.Trim();
+                TACSVConsole.Log($"Message Recieved: {trimmedLine}");
+                OnMessageRecieved?.Invoke(this, trimmedLine);
+            }
+            _lineBeingRead = "";  
         }
     }
 
