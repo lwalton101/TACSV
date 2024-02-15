@@ -1,3 +1,21 @@
 ﻿{
-  "InfluxDBToken": "test"
+  "InfluxDBToken": "",
+  "InfluxUrl": "influx.biggarf.com",
+  "Bucket": "TACSV",
+  "Organisation": "Team Artemis",
+  "DataPrefixes":{
+    "C0": "CCS811 TVOC",
+    "C1": "CCS811 eCO2",
+    "E0": "BME280 Temperature",
+    "E1": "BME280 Humidity",
+    "E2": "BME280 Barometric Pressure",
+    "E3": "BME280 Altitude",
+    "T0": "LTR390 Ambient Light Intensity",
+    "S0": "LSM303AGR Acceleration X",
+    "S1": "LSM303AGR Acceleration Y",
+    "S2": "LSM303AGR Acceleration Z",
+    "S3": "LSM303AGR Magnetic Field Strength X",
+    "S4": "LSM303AGR Magnetic Field Strength Y",
+    "S5": "LSM303AGR Magnetic Field Strength Z"
+  }
 }
