@@ -35,6 +35,10 @@ jobs:
         run: dotnet build 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.1.1  
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
         with: 
