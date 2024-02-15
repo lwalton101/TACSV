@@ -10,7 +10,7 @@ namespace TACSV
         public static ObservableCollection<String> Entries = new ObservableCollection<string>();
 
 
-        public static void Log(string message)
+        public static void Log(object message)
         {
 			Trace.WriteLine("Logging to TACSVConsole");
 			Entries.Add($"[{DateTime.Now}] {message}");
