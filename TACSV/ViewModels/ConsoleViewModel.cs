@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace TACSV.ViewModels;
+﻿namespace TACSV.ViewModels;
 
 public class ConsoleViewModel : ViewModelBase
 {
