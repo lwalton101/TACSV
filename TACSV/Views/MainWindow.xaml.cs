@@ -27,6 +27,7 @@ namespace TACSV
 		{
 			TACSVConsole.Log("TACSV Loaded!"); 
 			ConfigManager.Initialise();
+			Program.Ground.OnMessageRecieved += InfluxDbManager.OnMessage;
 			Sidebar.SelectedIndex = 0;
 		}
 	}
