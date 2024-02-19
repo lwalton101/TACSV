@@ -16,6 +16,8 @@
     "S2": "LSM303AGR Acceleration Z",
     "S3": "LSM303AGR Magnetic Field Strength X",
     "S4": "LSM303AGR Magnetic Field Strength Y",
-    "S5": "LSM303AGR Magnetic Field Strength Z"
+    "S5": "LSM303AGR Magnetic Field Strength Z",
+    "P0": "BMP280 Temperature",
+    "P1": "BMP280 Barometric Pressure"
   }
 }
