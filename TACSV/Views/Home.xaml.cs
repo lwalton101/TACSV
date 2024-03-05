@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using TACSV.ViewModels;
 
@@ -15,6 +18,8 @@ namespace TACSV
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
+			
+			
 			ConnectionStatus.Text = Program.Ground.IsOpen ? "Connected!" : "Not connected :(";
 			Program.Ground.OnConnectionOpen += (_,_) => ConnectionStatus.Text = "Connected!";
 			Program.Ground.OnConnectionClosed += (_, _) => ConnectionStatus.Text = "Not Connected :(";

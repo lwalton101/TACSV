@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using TACSV.Config;
 using TACSV.ViewModels;
@@ -29,6 +31,29 @@ namespace TACSV
 			ConfigManager.Initialise();
 			Program.Ground.OnMessageRecieved += InfluxDbManager.OnMessage;
 			Sidebar.SelectedIndex = 0;
+			InfluxDbManager.StartThread();
+			
+			string path = "C:\\Users\\lukew\\Downloads\\TEST.txt";
+			List<string> lines = new List<string>();
+			// Open the file and read lines
+				using (StreamReader sr = new StreamReader(path))
+				{
+					string line;
+					// Read until the end of the file
+					while ((line = sr.ReadLine()) != null)
+					{
+						// Add each line to the list
+						lines.Add(line);
+					}
+				}
+
+				// Output the lines read from the file
+				foreach (string line in lines)
+				{
+					InfluxDbManager.OnMessage(null, line);
+				}
+				
+			
 		}
 	}
 }

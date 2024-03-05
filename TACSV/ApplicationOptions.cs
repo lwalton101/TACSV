@@ -4,6 +4,7 @@ namespace TACSV
 {
 	public class ApplicationOptions
 	{
+		public string MillisPrefix { get; set; }
 		public string InfluxDBToken { get; set; }
 		public string InfluxUrl { get; set; }
 		public string Bucket { get; set; }

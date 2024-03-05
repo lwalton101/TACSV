@@ -1,4 +1,5 @@
 ﻿{
+  "MillisPrefix": "N0",
   "InfluxDBToken": "",
   "InfluxUrl": "influx.biggarf.com",
   "Bucket": "TACSV",
@@ -18,6 +19,7 @@
     "S4": "LSM303AGR Magnetic Field Strength Y",
     "S5": "LSM303AGR Magnetic Field Strength Z",
     "P0": "BMP280 Temperature",
-    "P1": "BMP280 Barometric Pressure"
+    "P1": "BMP280 Barometric Pressure",
+    "R0": "RSSI"
   }
 }

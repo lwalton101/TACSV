@@ -12,6 +12,10 @@ namespace TACSV
         public static void Log(object message)
         {
 			Trace.WriteLine("Logging to TACSVConsole");
+            if (Entries.Count > 100)
+            {
+                Entries.RemoveAt(0);
+            }
 			Entries.Add($"[{DateTime.Now}] {message}");
         }
 
